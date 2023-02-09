@@ -82,6 +82,8 @@ pub fn get_type_properties(defs: &[IdlTypeDefinition], ty: &IdlType) -> FieldLis
         | IdlType::F64
         | IdlType::U128
         | IdlType::I128
+        | IdlType::U256
+        | IdlType::I256
         | IdlType::PublicKey => FieldListProperties {
             can_copy: true,
             can_derive_default: true,
