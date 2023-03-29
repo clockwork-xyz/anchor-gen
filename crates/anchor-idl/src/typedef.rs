@@ -134,6 +134,47 @@ pub fn generate_fields(fields: &[IdlField]) -> TokenStream {
     }
 }
 
+/// Generates struct fields from a list of [IdlField]s.
+pub fn generate_private_fields(fields: &[IdlField]) -> TokenStream {
+    let fields_rendered = fields.iter().map(|arg| {
+        let name = format_ident!("{}", arg.name.to_snake_case());
+        let type_name = crate::ty_to_rust_type(&arg.ty);
+        let stream: proc_macro2::TokenStream = type_name.parse().unwrap();
+        quote! {
+            #name: #stream
+        }
+    });
+    quote! {
+        #(#fields_rendered),*
+    }
+}
+
+/// Generates struct fields from a list of [IdlField]s.
+pub fn generate_default_fields(fields: &[IdlField]) -> TokenStream {
+    let fields_rendered = fields.iter().map(|arg| {
+        let name = format_ident!("{}", arg.name.to_snake_case());
+        let type_name = crate::ty_to_rust_type(&arg.ty);
+        let stream: proc_macro2::TokenStream = type_name.parse().unwrap();
+        quote! {
+            #name: #stream::default()
+        }
+    });
+    quote! {
+        #(#fields_rendered),*
+    }
+}
+
+/// Generates struct fields from a list of [IdlField]s.
+pub fn generate_enum_fields(fields: EnumFields) -> TokenStream {
+    match fields {
+        EnumFields::Named(named_fields) => generate_private_fields(&named_fields),
+        EnumFields::Tuple(tuple_fields) => {
+            // TODO
+            quote! {}
+        }
+    }
+}
+
 /// Generates a struct.
 pub fn generate_struct(
     defs: &[IdlTypeDefinition],
@@ -195,7 +236,21 @@ pub fn generate_enum(
     enum_name: &Ident,
     variants: &[IdlEnumVariant],
 ) -> TokenStream {
-    let variant_idents = variants.iter().map(|v| format_ident!("{}", v.name));
+    let variant_idents = variants.iter().map(|v| {
+        let name = format_ident!("{}", v.name.clone());
+        if let Some(fields) = v.fields.clone() {
+            let fields_rendered = generate_enum_fields(fields);
+            quote! {
+                #name {
+                    #fields_rendered
+                }
+            }
+        } else {
+            quote! {
+                #name
+            }
+        }
+    });
     let props = get_variant_list_properties(defs, variants);
 
     let derive_copy = if props.can_copy {
@@ -206,7 +261,26 @@ pub fn generate_enum(
         quote! {}
     };
 
-    let default_variant = format_ident!("{}", variants.first().unwrap().name);
+    // let default_variant = format_ident!("{}", variants.first().unwrap().name);
+    let first_varient = variants.first().unwrap();
+    let first_varient_name = format_ident!("{}", first_varient.name);
+    let default_variant = if let Some(fields) = first_varient.fields.clone() {
+        match fields {
+            EnumFields::Named(named_fields) => {
+                let default_fields = generate_default_fields(&named_fields);
+                quote! {
+                    Self::#first_varient_name {
+                        #default_fields
+                    }
+                }
+            }
+            EnumFields::Tuple(_) => todo!(),
+        }
+    } else {
+        quote! {
+            Self::#first_varient_name
+        }
+    };
 
     quote! {
         #[derive(AnchorSerialize, AnchorDeserialize, Clone, Debug)]
@@ -217,7 +291,7 @@ pub fn generate_enum(
 
         impl Default for #enum_name {
             fn default() -> Self {
-                Self::#default_variant
+                #default_variant
             }
         }
     }
