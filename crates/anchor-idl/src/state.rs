@@ -57,6 +57,7 @@ pub fn generate_account(
         #[doc = #doc]
         #derive_copy
         #derive_default
+        #[derive(Debug)]
         pub struct #struct_name {
             #fields_rendered
         }
