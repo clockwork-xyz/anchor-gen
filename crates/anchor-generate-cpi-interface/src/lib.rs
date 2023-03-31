@@ -14,7 +14,7 @@
 //!
 //! More examples can be found in the [examples/](https://github.com/saber-hq/anchor-gen/tree/master/examples) directory.
 
-use anchor_idl::GeneratorOptions;
+use clockwork_anchor_idl::GeneratorOptions;
 use darling::FromMeta;
 use proc_macro::TokenStream;
 use syn::parse_macro_input;

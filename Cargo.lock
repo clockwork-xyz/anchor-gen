@@ -125,47 +125,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "anchor-gen"
-version = "0.3.1"
-dependencies = [
- "anchor-generate-cpi-crate",
- "anchor-generate-cpi-interface",
-]
-
-[[package]]
-name = "anchor-generate-cpi-crate"
-version = "0.3.1"
-dependencies = [
- "anchor-idl",
- "anchor-lang",
- "syn",
-]
-
-[[package]]
-name = "anchor-generate-cpi-interface"
-version = "0.3.1"
-dependencies = [
- "anchor-idl",
- "anchor-lang",
- "darling",
- "syn",
-]
-
-[[package]]
-name = "anchor-idl"
-version = "0.3.1"
-dependencies = [
- "anchor-lang",
- "anchor-syn",
- "darling",
- "heck 0.4.0",
- "proc-macro2",
- "quote",
- "serde_json",
- "syn",
-]
-
-[[package]]
 name = "anchor-lang"
 version = "0.27.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -509,6 +468,47 @@ name = "cfg-if"
 version = "1.0.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "baf1de4339761588bc0619e3cbc0120ee582ebb74b53b4efbf79117bd2da40fd"
+
+[[package]]
+name = "clockwork-anchor-gen"
+version = "0.3.1"
+dependencies = [
+ "clockwork-anchor-generate-cpi-crate",
+ "clockwork-anchor-generate-cpi-interface",
+]
+
+[[package]]
+name = "clockwork-anchor-generate-cpi-crate"
+version = "0.3.1"
+dependencies = [
+ "anchor-lang",
+ "clockwork-anchor-idl",
+ "syn",
+]
+
+[[package]]
+name = "clockwork-anchor-generate-cpi-interface"
+version = "0.3.1"
+dependencies = [
+ "anchor-lang",
+ "clockwork-anchor-idl",
+ "darling",
+ "syn",
+]
+
+[[package]]
+name = "clockwork-anchor-idl"
+version = "0.3.1"
+dependencies = [
+ "anchor-lang",
+ "anchor-syn",
+ "darling",
+ "heck 0.4.0",
+ "proc-macro2",
+ "quote",
+ "serde_json",
+ "syn",
+]
 
 [[package]]
 name = "console_error_panic_hook"

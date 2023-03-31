@@ -1,10 +1,10 @@
 [package]
-name = "anchor-gen"
+name = "clockwork-anchor-gen"
 version = "0.3.1"
 edition = "2021"
 description = "Generates an Anchor CPI crate from a JSON IDL."
-authors = ["Ian Macalinao <ian@saber.so>"]
-repository = "https://github.com/saber-hq/anchor-gen"
+authors = [""]
+repository = "https://github.com/clockwork-xyz/anchor-gen"
 license = "Apache-2.0"
 keywords = ["solana", "anchor"]
 readme = "../../README.md"
@@ -15,10 +15,10 @@ path = "src/lib.rs"
 
 [features]
 compat-program-result = [
-  "anchor-generate-cpi-crate/compat-program-result",
-  "anchor-generate-cpi-interface/compat-program-result"
+  "clockwork-anchor-generate-cpi-crate/compat-program-result",
+  "clockwork-anchor-generate-cpi-interface/compat-program-result"
 ]
 
 [dependencies]
-anchor-generate-cpi-crate = { version = "0.3.0", path = "../anchor-generate-cpi-crate" }
-anchor-generate-cpi-interface = { version = "0.3.0", path = "../anchor-generate-cpi-interface" }
+clockwork-anchor-generate-cpi-crate = { version = "0.3.0", path = "../anchor-generate-cpi-crate" }
+clockwork-anchor-generate-cpi-interface = { version = "0.3.0", path = "../anchor-generate-cpi-interface" }
