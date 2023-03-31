@@ -1,5 +1,5 @@
 [package]
-name = "anchor-generate-cpi-interface"
+name = "clockwork-anchor-generate-cpi-interface"
 version = "0.3.1"
 edition = "2021"
 description = "Generates an Anchor CPI crate from a JSON IDL."
@@ -10,15 +10,15 @@ keywords = ["solana", "anchor"]
 readme = "../../README.md"
 
 [lib]
-name = "anchor_generate_cpi_interface"
+name = "clockwork_anchor_generate_cpi_interface"
 path = "src/lib.rs"
 proc-macro = true
 
 [features]
-compat-program-result = ["anchor-idl/compat-program-result"]
+compat-program-result = ["clockwork-anchor-idl/compat-program-result"]
 
 [dependencies]
-anchor-idl = { version = "0.3.0", path = "../anchor-idl" }
+clockwork-anchor-idl = { version = "0.3.0", path = "../anchor-idl" }
 darling = "0.14"
 syn = { version = "1", features = ["full"] }
 
