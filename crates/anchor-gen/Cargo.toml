@@ -10,7 +10,7 @@ keywords = ["solana", "anchor"]
 readme = "../../README.md"
 
 [lib]
-name = "anchor_gen"
+name = "clockwork_anchor_gen"
 path = "src/lib.rs"
 
 [features]
