@@ -1,6 +1,6 @@
 [package]
 name = "clockwork-anchor-gen"
-version = "0.3.1"
+version = "0.3.2"
 edition = "2021"
 description = "Generates an Anchor CPI crate from a JSON IDL."
 authors = [""]
@@ -20,5 +20,5 @@ compat-program-result = [
 ]
 
 [dependencies]
-clockwork-anchor-generate-cpi-crate = { version = "0.3.0", path = "../anchor-generate-cpi-crate" }
-clockwork-anchor-generate-cpi-interface = { version = "0.3.0", path = "../anchor-generate-cpi-interface" }
+clockwork-anchor-generate-cpi-crate = { version = "0.3.2", path = "../anchor-generate-cpi-crate" }
+clockwork-anchor-generate-cpi-interface = { version = "0.3.2", path = "../anchor-generate-cpi-interface" }

@@ -471,7 +471,7 @@ checksum = "baf1de4339761588bc0619e3cbc0120ee582ebb74b53b4efbf79117bd2da40fd"
 
 [[package]]
 name = "clockwork-anchor-gen"
-version = "0.3.1"
+version = "0.3.2"
 dependencies = [
  "clockwork-anchor-generate-cpi-crate",
  "clockwork-anchor-generate-cpi-interface",
@@ -479,7 +479,7 @@ dependencies = [
 
 [[package]]
 name = "clockwork-anchor-generate-cpi-crate"
-version = "0.3.1"
+version = "0.3.2"
 dependencies = [
  "anchor-lang",
  "clockwork-anchor-idl",
@@ -488,7 +488,7 @@ dependencies = [
 
 [[package]]
 name = "clockwork-anchor-generate-cpi-interface"
-version = "0.3.1"
+version = "0.3.2"
 dependencies = [
  "anchor-lang",
  "clockwork-anchor-idl",
@@ -498,7 +498,7 @@ dependencies = [
 
 [[package]]
 name = "clockwork-anchor-idl"
-version = "0.3.1"
+version = "0.3.2"
 dependencies = [
  "anchor-lang",
  "anchor-syn",
