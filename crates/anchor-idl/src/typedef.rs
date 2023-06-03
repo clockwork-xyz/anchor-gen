@@ -168,7 +168,7 @@ pub fn generate_default_fields(fields: &[IdlField]) -> TokenStream {
 pub fn generate_enum_fields(fields: EnumFields) -> TokenStream {
     match fields {
         EnumFields::Named(named_fields) => generate_private_fields(&named_fields),
-        EnumFields::Tuple(tuple_fields) => {
+        EnumFields::Tuple(_tuple_fields) => {
             // TODO
             quote! {}
         }

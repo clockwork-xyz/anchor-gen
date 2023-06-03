@@ -19,11 +19,21 @@ pub fn generate_account_fields(
                 } else {
                     quote! {}
                 };
-                let ty = if info.is_signer {
-                    quote! { Signer<'info> }
+
+                let ty = if let Some(true) = info.is_optional {
+                    if info.is_signer {
+                        quote! { Option<Signer<'info>>}
+                    } else {
+                        quote! { Option<AccountInfo<'info>> }
+                    }
                 } else {
-                    quote! { AccountInfo<'info> }
+                    if info.is_signer {
+                        quote! { Signer<'info> }
+                    } else {
+                        quote! { AccountInfo<'info> }
+                    }
                 };
+       
                 quote! {
                    #annotation
                    pub #acc_name: #ty
